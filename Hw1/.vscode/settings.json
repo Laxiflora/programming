@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "iterator": "c",
+        "sstream": "c"
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
+}
