@@ -4,7 +4,6 @@
 #define NAME_LENGTH 64
 
 struct course{
-    int course_id;
     struct course* next;
     struct course* piror;
     char course_name[NAME_LENGTH];
