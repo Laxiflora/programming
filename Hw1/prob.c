@@ -16,6 +16,7 @@ void searchForDelim(char* name){
     }
     delim[delim_current++] = '\t';
     delim[delim_current++] = '\r';
+    delim[delim_current++] = '\n';
 
 }
 
@@ -26,8 +27,8 @@ _strcasestr didn't simulate as a original strcasestr, since it's output is incor
 But the length of the string is same, thus is ok to use in this program.
 */
 int _strcasestr(char* input , const char* compare){
-    char lowCase_input[4096];
-    char lowCase_compare[4096];
+    char lowCase_input[4096] = {'\0'};
+    char lowCase_compare[4096] = {'\0'};
     strcpy(lowCase_input,input);
     for(int i=0;i<strlen(compare);i++){
         lowCase_compare[i] = tolower(compare[i]);
@@ -84,13 +85,11 @@ void printWithCase(char* name,const char* toDelete,const char* toReplace){
 void printWithNoCase(char* name,const char* toDelete,const char* toReplace){  //不管大小寫
     char* word;
     word = strtok(name,delim);
-    _strcasestr(word,toDelete);
     if(_strcasestr(word,toDelete)!=-1){
         replaceString(word,toDelete,toReplace);
     }
 
     while((word = strtok(NULL,delim)) != NULL){
-           // printf("word = %s\n",word);
         if(_strcasestr(word,toDelete) != -1){
             replaceString(word,toDelete,toReplace);
         }
