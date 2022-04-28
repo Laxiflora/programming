@@ -102,17 +102,19 @@ int main(int argc,char **argv){
     char pre[4096];
    // printf("Enter pattern, replacement, and at most one parameter: ");
     fgets(pre,4096,stdin);
-
-    // extract args
+    pre[strlen(pre)-1] = '\0';
+    if(pre[strlen(pre)-2]==' '){
+        pre[strlen(pre)-2] = '\0';
+    }
+    int _argc=1;
     char* temp;
     char  _argv[5][256];
     temp = strtok(pre," ");
-    int _argc=1;
-    if(strcmp(temp," ")!=0){
+    if(strcmp(temp," ")!=0 && strcmp(temp,"\n") != 0 ){
         strcpy(_argv[_argc++],temp);
     }
     while((temp = strtok(NULL," "))!=NULL){
-        if(strcmp(temp," ")!=0){
+        if(strcmp(temp," ")!=0 && strcmp(temp,"\n")!=0 && strcmp(temp," \n")!=0){
             strcpy(_argv[_argc++],temp);
             if(_argc == 4){   //there must be -i
                 if(strcmp(_argv[3],"-i\n")==0 || strcmp(_argv[3],"-i")==0){
@@ -133,7 +135,6 @@ int main(int argc,char **argv){
         printf("The input format: string1 string2 [parameter]");
         return 0;
     }
-    _argv[_argc-1][strlen(_argv[_argc-1])-1] = '\0';
     //
     // if(argc!=3 && argc != 4){
     //     printf("The input format: string1 string2 [parameter]");
@@ -150,6 +151,7 @@ int main(int argc,char **argv){
     // }
     // char* toDelete = argv[1];
     // char* toReplace = argv[2];
+
 	while(fgets(name,4096,stdin) != NULL){
         if (name[0] == '\n'){
             continue;
